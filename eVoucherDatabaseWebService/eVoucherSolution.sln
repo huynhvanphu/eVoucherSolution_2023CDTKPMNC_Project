@@ -14,16 +14,21 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "eVoucher_BUS", "..\eVoucherDatabaseWebService_BUS\eVoucher_BUS.csproj", "{1C7C2DA2-1E9C-481F-AD2B-0261496AE5F0}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "0.AboutSolution", "0.AboutSolution", "{5918DBFD-CC82-4725-93C1-8A9469A623B8}"
+	ProjectSection(SolutionItems) = preProject
+		SolutionArchitecture.txt = SolutionArchitecture.txt
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1.Infrastructure", "1.Infrastructure", "{63968547-8486-4AFC-95AE-5BB37970702E}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2.Application", "2.Application", "{A360E10A-88FB-43C0-940F-94EDF0C3F47C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "eVoucher.Admin", "..\eVoucher.Admin\eVoucher.Admin.csproj", "{029B964B-0818-4570-92FA-93819AF21C45}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "eVoucher.Admin", "..\eVoucher.Admin\eVoucher.Admin.csproj", "{029B964B-0818-4570-92FA-93819AF21C45}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "eVoucher.Partner", "..\eVoucher.Partner\eVoucher.Partner.csproj", "{38C5AC55-021C-48D1-BAD2-EA0CDD2D3D57}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "eVoucher.Partner", "..\eVoucher.Partner\eVoucher.Partner.csproj", "{38C5AC55-021C-48D1-BAD2-EA0CDD2D3D57}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "eVoucher.Client", "..\eVoucher.Client\eVoucher.Client.csproj", "{5E2EC554-5588-4553-A4CD-7B83BC96C40C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "eVoucher.Client", "..\eVoucher.Client\eVoucher.Client.csproj", "{5E2EC554-5588-4553-A4CD-7B83BC96C40C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "eVoucher.ClientAPI_Integration", "..\eVoucher.ClientAPI_Integration\eVoucher.ClientAPI_Integration.csproj", "{73543CE8-83C8-4D7D-AD7E-3CBED1B5F896}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -63,6 +68,10 @@ Global
 		{5E2EC554-5588-4553-A4CD-7B83BC96C40C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5E2EC554-5588-4553-A4CD-7B83BC96C40C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5E2EC554-5588-4553-A4CD-7B83BC96C40C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{73543CE8-83C8-4D7D-AD7E-3CBED1B5F896}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{73543CE8-83C8-4D7D-AD7E-3CBED1B5F896}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{73543CE8-83C8-4D7D-AD7E-3CBED1B5F896}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{73543CE8-83C8-4D7D-AD7E-3CBED1B5F896}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -76,6 +85,7 @@ Global
 		{029B964B-0818-4570-92FA-93819AF21C45} = {A360E10A-88FB-43C0-940F-94EDF0C3F47C}
 		{38C5AC55-021C-48D1-BAD2-EA0CDD2D3D57} = {A360E10A-88FB-43C0-940F-94EDF0C3F47C}
 		{5E2EC554-5588-4553-A4CD-7B83BC96C40C} = {A360E10A-88FB-43C0-940F-94EDF0C3F47C}
+		{73543CE8-83C8-4D7D-AD7E-3CBED1B5F896} = {63968547-8486-4AFC-95AE-5BB37970702E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {B16B02C0-321E-48B7-A6B3-5A5308C30845}
