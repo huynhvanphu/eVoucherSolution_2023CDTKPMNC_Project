@@ -1,21 +1,23 @@
-﻿global using eVoucherDatabaseWebService_DTO.Models;
+﻿global using eVoucher_DTO.Models;
 global using Microsoft.AspNetCore.Identity;
 global using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 global using Microsoft.EntityFrameworkCore;
+using eVoucher_DTO.Models;
 using Microsoft.Extensions.Options;
 using System.Reflection.Emit;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
-namespace eVoucherDatabaseWebService_DAL
+namespace eVoucher_DAL
 {
     public class eVoucherDbContext : IdentityDbContext<AppUser, AppRole, Guid>
     {
-        public eVoucherDbContext(DbContextOptions options) : base(options) {
-            }
+        public eVoucherDbContext(DbContextOptions options) : base(options)
+        {
+        }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            base.OnConfiguring(optionsBuilder);            
-            
+            base.OnConfiguring(optionsBuilder);
+
             optionsBuilder.UseSqlServer("name=ConnectionStrings:DefaultConnection", b => b.MigrationsAssembly("eVoucherDatabaseWebService"));
         }
         protected eVoucherDbContext() { }
@@ -28,7 +30,7 @@ namespace eVoucherDatabaseWebService_DAL
         public DbSet<AppRole> AppRoles { get; set; }
         public DbSet<Game> Games { get; set; }
         public DbSet<Campaign> Campaigns { get; set; }
-        public DbSet<CampaignGame> CampaignGames { get; set; }       
+        public DbSet<CampaignGame> CampaignGames { get; set; }
         public DbSet<VoucherType> VoucherTypes { get; set; }
         public DbSet<GamePlayResult> GamePlayResults { get; set; }
         public DbSet<Voucher> Vouchers { get; set; }

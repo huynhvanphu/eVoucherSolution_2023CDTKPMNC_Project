@@ -1,6 +1,6 @@
-﻿using eVoucherDatabaseWebService_BUS.Services;
-using eVoucherDatabaseWebService_DAL;
-using eVoucherDatabaseWebService_DAL.Repositories;
+﻿using eVoucher_BUS.Services;
+using eVoucher_DAL;
+using eVoucher_DAL.Repositories;
 
 namespace eVoucherDatabaseWebService
 {
