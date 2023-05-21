@@ -4,6 +4,7 @@ using eVoucher_DTO.Models;
 using eVoucher_DAL.Repositories;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
+using Microsoft.AspNetCore.Authorization;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -41,7 +42,8 @@ namespace eVoucherDatabaseWebService.Controllers
 
         // POST api/<GameController>
         [HttpPost]
-        public async Task<ActionResult<Game>> Post([FromBody] GameCreateRequest request)
+        [Authorize]
+        public async Task<ActionResult<Game>> Post([FromForm] GameCreateRequest request)
         {
             if (!ModelState.IsValid)
             {

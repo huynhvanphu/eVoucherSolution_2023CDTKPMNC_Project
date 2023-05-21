@@ -18,16 +18,13 @@ namespace eVoucherDatabaseWebService.Controllers
 
         // POST api/<StaffController>
         [HttpPost]
-        public async Task<ActionResult<Staff?>> Post([FromBody] StaffRegisterRequest request)
+        public async Task<ActionResult<Staff?>> Post([FromForm] StaffRegisterRequest request)
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
+            
             var result = await _staffService.RegisterStaff(request);
             if(result==null)
             {
-                return null;
+                return BadRequest(null);
             }
             return Ok(result);
         }
