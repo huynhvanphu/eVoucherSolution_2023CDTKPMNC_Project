@@ -5,18 +5,18 @@ global using Microsoft.EntityFrameworkCore;
 
 namespace eVoucher_DAL
 {
-    public class eVoucherDbContext : IdentityDbContext<AppUser, AppRole, Guid>
+    public class eVoucherDbContext : IdentityDbContext<AppUser, AppRole, int>
     {
         public eVoucherDbContext(DbContextOptions options) : base(options)
         {
         }
         // the followed functions are disable because it was declare in eVoucherDatabaseWebservice startup.cs -> configureservices
-        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        //{
-        //    base.OnConfiguring(optionsBuilder);
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            base.OnConfiguring(optionsBuilder);
 
-        //    optionsBuilder.UseSqlServer("name=ConnectionStrings:DefaultConnection", b => b.MigrationsAssembly("eVoucherDatabaseWebService"));
-        //}
+            optionsBuilder.UseSqlServer("name=ConnectionStrings:DefaultConnection", b => b.MigrationsAssembly("eVoucher_Migrations"));
+        }
 
         protected eVoucherDbContext()
         { }
@@ -39,12 +39,12 @@ namespace eVoucher_DAL
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<IdentityUserClaim<Guid>>().ToTable("AppUserClaims");
-            modelBuilder.Entity<IdentityUserRole<Guid>>().ToTable("AppUserRoles").HasKey(x => new { x.UserId, x.RoleId });
-            modelBuilder.Entity<IdentityUserLogin<Guid>>().ToTable("AppUserLogins").HasKey(x => x.UserId);
+            modelBuilder.Entity<IdentityUserClaim<int>>().ToTable("AppUserClaims");
+            modelBuilder.Entity<IdentityUserRole<int>>().ToTable("AppUserRoles").HasKey(x => new { x.UserId, x.RoleId });
+            modelBuilder.Entity<IdentityUserLogin<int>>().ToTable("AppUserLogins").HasKey(x => x.UserId);
 
-            modelBuilder.Entity<IdentityRoleClaim<Guid>>().ToTable("AppRoleClaims");
-            modelBuilder.Entity<IdentityUserToken<Guid>>().ToTable("AppUserTokens").HasKey(x => x.UserId);
+            modelBuilder.Entity<IdentityRoleClaim<int>>().ToTable("AppRoleClaims");
+            modelBuilder.Entity<IdentityUserToken<int>>().ToTable("AppUserTokens").HasKey(x => x.UserId);
             modelBuilder.Entity<VoucherType>()
                 .HasMany(e => e.Vouchers)
                 .WithOne(e => e.VoucherType)

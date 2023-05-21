@@ -12,7 +12,7 @@ namespace eVoucher_BUS.Services
 
         Task<Staff?> GetStaffById(int id);
 
-        Task<Staff> RegisterStaff(StaffRegisterRequest request);
+        Task<Staff?> RegisterStaff(StaffRegisterRequest request);
 
         Task<Staff?> UpdateStaff(StaffUpdateRequest request);
 
@@ -25,11 +25,12 @@ namespace eVoucher_BUS.Services
     {
         private StaffRepository _staffRepository;
         private readonly UserManager<AppUser> _userManager;
-
-        public StaffService(StaffRepository staffRepository, UserManager<AppUser> userManager)
+        private RoleManager<AppRole> _roleManager;
+        public StaffService(StaffRepository staffRepository, UserManager<AppUser> userManager, RoleManager<AppRole> roleManager)
         {
             _staffRepository = staffRepository;
             _userManager = userManager;
+            _roleManager = roleManager;
         }
 
         public Task<Staff> DeleteStaff(int id)
@@ -53,7 +54,7 @@ namespace eVoucher_BUS.Services
             throw new NotImplementedException();
         }
 
-        public async Task<Staff> RegisterStaff(StaffRegisterRequest request)
+        public async Task<Staff?> RegisterStaff(StaffRegisterRequest request)
         {
             var user = new AppUser()
             {
@@ -62,7 +63,7 @@ namespace eVoucher_BUS.Services
                 PhoneNumber = request.PhoneNumber
             };
             user.PasswordHash = _userManager.PasswordHasher.HashPassword(user, request.Password);
-            var result = await _userManager.CreateAsync(user, request.Password);
+            var result = await _userManager.CreateAsync(user);            
             var staff = new Staff()
             {
                 Name = request.Name,
@@ -73,8 +74,9 @@ namespace eVoucher_BUS.Services
                 IsDeleted = false,
                 Status = ActiveStatus.Active,
                 AppUser = user
-            };
+            };            
             var registerResult = await _staffRepository.Add(staff);
+            
             return registerResult;
         }
 

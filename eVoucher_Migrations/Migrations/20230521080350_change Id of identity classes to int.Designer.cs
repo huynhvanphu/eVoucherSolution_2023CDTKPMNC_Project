@@ -9,11 +9,11 @@ using eVoucher_DAL;
 
 #nullable disable
 
-namespace eVoucher_BUS.Migrations
+namespace eVoucher_Migrations.Migrations
 {
     [DbContext(typeof(eVoucherDbContext))]
-    [Migration("20230519055136_update game class")]
-    partial class updategameclass
+    [Migration("20230521080350_change Id of identity classes to int")]
+    partial class changeIdofidentityclassestoint
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -25,7 +25,7 @@ namespace eVoucher_BUS.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<System.Guid>", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<int>", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -39,15 +39,15 @@ namespace eVoucher_BUS.Migrations
                     b.Property<string>("ClaimValue")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid>("RoleId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int>("RoleId")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
                     b.ToTable("AppRoleClaims", (string)null);
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<System.Guid>", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<int>", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -61,19 +61,21 @@ namespace eVoucher_BUS.Migrations
                     b.Property<string>("ClaimValue")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid>("UserId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
                     b.ToTable("AppUserClaims", (string)null);
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<System.Guid>", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<int>", b =>
                 {
-                    b.Property<Guid>("UserId")
+                    b.Property<int>("UserId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("UserId"));
 
                     b.Property<string>("LoginProvider")
                         .IsRequired()
@@ -91,24 +93,26 @@ namespace eVoucher_BUS.Migrations
                     b.ToTable("AppUserLogins", (string)null);
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<System.Guid>", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<int>", b =>
                 {
-                    b.Property<Guid>("UserId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
 
-                    b.Property<Guid>("RoleId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int>("RoleId")
+                        .HasColumnType("int");
 
                     b.HasKey("UserId", "RoleId");
 
                     b.ToTable("AppUserRoles", (string)null);
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<System.Guid>", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<int>", b =>
                 {
-                    b.Property<Guid>("UserId")
+                    b.Property<int>("UserId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("UserId"));
 
                     b.Property<string>("LoginProvider")
                         .IsRequired()
@@ -128,9 +132,11 @@ namespace eVoucher_BUS.Migrations
 
             modelBuilder.Entity("eVoucher_DTO.Models.AppRole", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("ConcurrencyStamp")
                         .HasColumnType("nvarchar(max)");
@@ -152,18 +158,17 @@ namespace eVoucher_BUS.Migrations
 
             modelBuilder.Entity("eVoucher_DTO.Models.AppUser", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<int>("AccessFailedCount")
                         .HasColumnType("int");
 
                     b.Property<string>("ConcurrencyStamp")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("CustomerID")
-                        .HasColumnType("int");
 
                     b.Property<string>("Email")
                         .HasColumnType("nvarchar(max)");
@@ -183,9 +188,6 @@ namespace eVoucher_BUS.Migrations
                     b.Property<string>("NormalizedUserName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("PartnerID")
-                        .HasColumnType("int");
-
                     b.Property<string>("PasswordHash")
                         .HasColumnType("nvarchar(max)");
 
@@ -198,9 +200,6 @@ namespace eVoucher_BUS.Migrations
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("StaffID")
-                        .HasColumnType("int");
-
                     b.Property<bool>("TwoFactorEnabled")
                         .HasColumnType("bit");
 
@@ -208,12 +207,6 @@ namespace eVoucher_BUS.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("CustomerID");
-
-                    b.HasIndex("PartnerID");
-
-                    b.HasIndex("StaffID");
 
                     b.ToTable("AppUsers");
                 });
@@ -416,13 +409,12 @@ namespace eVoucher_BUS.Migrations
                     b.Property<DateTime?>("UpdatedTime")
                         .HasColumnType("datetime2");
 
-                    b.Property<Guid>("UserID")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int>("UserID")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("UserID")
-                        .IsUnique();
+                    b.HasIndex("UserID");
 
                     b.ToTable("Customers");
                 });
@@ -479,8 +471,8 @@ namespace eVoucher_BUS.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<Guid?>("AppUserId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int?>("AppUserId")
+                        .HasColumnType("int");
 
                     b.Property<int>("CampaignGameID")
                         .HasColumnType("int");
@@ -544,15 +536,14 @@ namespace eVoucher_BUS.Migrations
                     b.Property<DateTime?>("UpdatedTime")
                         .HasColumnType("datetime2");
 
-                    b.Property<Guid>("UserID")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int>("UserID")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
                     b.HasIndex("PartnerCategoryID");
 
-                    b.HasIndex("UserID")
-                        .IsUnique();
+                    b.HasIndex("UserID");
 
                     b.ToTable("Partners");
                 });
@@ -675,13 +666,12 @@ namespace eVoucher_BUS.Migrations
                     b.Property<DateTime?>("UpdatedTime")
                         .HasColumnType("datetime2");
 
-                    b.Property<Guid>("UserID")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int>("UserID")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("UserID")
-                        .IsUnique();
+                    b.HasIndex("UserID");
 
                     b.ToTable("Staffs");
                 });
@@ -815,27 +805,6 @@ namespace eVoucher_BUS.Migrations
                     b.ToTable("VoucherTypeImages");
                 });
 
-            modelBuilder.Entity("eVoucher_DTO.Models.AppUser", b =>
-                {
-                    b.HasOne("eVoucher_DTO.Models.Customer", "Customer")
-                        .WithMany()
-                        .HasForeignKey("CustomerID");
-
-                    b.HasOne("eVoucher_DTO.Models.Partner", "Partner")
-                        .WithMany()
-                        .HasForeignKey("PartnerID");
-
-                    b.HasOne("eVoucher_DTO.Models.Staff", "Staff")
-                        .WithMany()
-                        .HasForeignKey("StaffID");
-
-                    b.Navigation("Customer");
-
-                    b.Navigation("Partner");
-
-                    b.Navigation("Staff");
-                });
-
             modelBuilder.Entity("eVoucher_DTO.Models.Campaign", b =>
                 {
                     b.HasOne("eVoucher_DTO.Models.Partner", "Partner")
@@ -880,8 +849,8 @@ namespace eVoucher_BUS.Migrations
             modelBuilder.Entity("eVoucher_DTO.Models.Customer", b =>
                 {
                     b.HasOne("eVoucher_DTO.Models.AppUser", "AppUser")
-                        .WithOne()
-                        .HasForeignKey("eVoucher_DTO.Models.Customer", "UserID")
+                        .WithMany()
+                        .HasForeignKey("UserID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -912,8 +881,8 @@ namespace eVoucher_BUS.Migrations
                         .IsRequired();
 
                     b.HasOne("eVoucher_DTO.Models.AppUser", "AppUser")
-                        .WithOne()
-                        .HasForeignKey("eVoucher_DTO.Models.Partner", "UserID")
+                        .WithMany()
+                        .HasForeignKey("UserID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -936,8 +905,8 @@ namespace eVoucher_BUS.Migrations
             modelBuilder.Entity("eVoucher_DTO.Models.Staff", b =>
                 {
                     b.HasOne("eVoucher_DTO.Models.AppUser", "AppUser")
-                        .WithOne()
-                        .HasForeignKey("eVoucher_DTO.Models.Staff", "UserID")
+                        .WithMany()
+                        .HasForeignKey("UserID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

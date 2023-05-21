@@ -56,13 +56,16 @@ namespace eVoucherDatabaseWebService
                 .AddEntityFrameworkStores<eVoucherDbContext>()
                 .AddDefaultTokenProviders();
             //Declare DI 
+            services.AddTransient<UserManager<AppUser>, UserManager<AppUser>>();
+            services.AddTransient<SignInManager<AppUser>>();
+            services.AddTransient<RoleManager<AppRole>>();
             services.AddScoped<GameRepository>();
             services.AddScoped<GameService>();
             services.AddScoped<StaffRepository>();
             services.AddScoped<StaffService>();
             services.AddScoped<PartnerRepository>();
             services.AddScoped<PartnerService>();
-
+            services.AddScoped<UserService>();
             services.AddControllers();
             services.AddEndpointsApiExplorer();
             services.AddSwaggerGen();

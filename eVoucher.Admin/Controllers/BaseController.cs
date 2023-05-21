@@ -7,7 +7,15 @@ namespace eVoucher.Admin.Controllers
     {
         public override void OnActionExecuting(ActionExecutingContext context)
         {
-            var sessions = context.HttpContext.Session.GetString("Token");
+            string sessions;
+            try
+            {
+                sessions = context.HttpContext.Session.GetString("Token");
+            }
+            catch (Exception ex)
+            {
+                sessions = null;
+            }
             if (sessions == null)
             {
                 context.Result = new RedirectToActionResult("Index", "Login", null);

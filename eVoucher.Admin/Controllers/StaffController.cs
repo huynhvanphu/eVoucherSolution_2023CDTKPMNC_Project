@@ -22,9 +22,9 @@ namespace eVoucher.Admin.Controllers
         [HttpPost]
         public async Task<IActionResult> Register([FromForm]StaffRegisterRequest request)
         {
-            //if (!ModelState.IsValid)
-            //    return View(request);
             
+            if (!ModelState.IsValid)
+                return View(request);            
             var result = await _staffAPIClient.Register(request);
             if (result == null)
             {

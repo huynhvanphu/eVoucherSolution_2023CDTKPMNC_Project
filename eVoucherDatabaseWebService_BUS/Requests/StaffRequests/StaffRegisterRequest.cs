@@ -19,7 +19,6 @@ namespace eVoucher_BUS.Requests.StaffRequests
         public string Password { get; set; }
         public string ConfirmPassword { get; set; }
         public string CreatedBy { get; set; }        
-        public DateTime CreatedTime { get; set; } = DateTime.Now;
-        
+        public DateTime CreatedTime { get; set; } = DateTime.Now;        
     }
 }
