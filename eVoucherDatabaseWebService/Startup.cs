@@ -1,6 +1,9 @@
 ﻿using eVoucher_BUS.Services;
 using eVoucher_DAL;
 using eVoucher_DAL.Repositories;
+using eVoucher_DTO.Models;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 
 namespace eVoucherDatabaseWebService
 {
@@ -24,7 +27,7 @@ namespace eVoucherDatabaseWebService
             app.UseHttpsRedirection();
 
             app.UseRouting();
-
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseSwagger();
@@ -44,11 +47,22 @@ namespace eVoucherDatabaseWebService
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<eVoucherDbContext>();
-            //Declare DI
+            services.AddDbContext<eVoucherDbContext>(options =>
+                options.UseSqlServer(
+                    Configuration.GetConnectionString("DefaultConnection"),
+                    x => x.MigrationsAssembly("eVoucher_Migrations")));
+            
+            services.AddIdentity<AppUser, AppRole>()
+                .AddEntityFrameworkStores<eVoucherDbContext>()
+                .AddDefaultTokenProviders();
+            //Declare DI 
             services.AddScoped<GameRepository>();
             services.AddScoped<GameService>();
-            
+            services.AddScoped<StaffRepository>();
+            services.AddScoped<StaffService>();
+            services.AddScoped<PartnerRepository>();
+            services.AddScoped<PartnerService>();
+
             services.AddControllers();
             services.AddEndpointsApiExplorer();
             services.AddSwaggerGen();

@@ -26,8 +26,7 @@ namespace eVoucher.Admin.Controllers
         public async Task<IActionResult> Create([FromForm] GameCreateRequest request)
         {
             if (!ModelState.IsValid)
-                return View(request);
-            request.CreatedBy = "Cuongpm";
+                return View(request);            
             var result = await _gameAPIClient.Create(request);
             if (result == null)
             {

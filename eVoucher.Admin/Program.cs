@@ -16,6 +16,7 @@ builder.Services.AddSession(options =>
     options.IdleTimeout = TimeSpan.FromMinutes(30);
 });
 builder.Services.AddTransient<GameAPIClient>();
+builder.Services.AddTransient<StaffAPIClient>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

@@ -2,10 +2,6 @@
 global using Microsoft.AspNetCore.Identity;
 global using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 global using Microsoft.EntityFrameworkCore;
-using eVoucher_DTO.Models;
-using Microsoft.Extensions.Options;
-using System.Reflection.Emit;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 namespace eVoucher_DAL
 {
@@ -14,13 +10,16 @@ namespace eVoucher_DAL
         public eVoucherDbContext(DbContextOptions options) : base(options)
         {
         }
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            base.OnConfiguring(optionsBuilder);
+        // the followed functions are disable because it was declare in eVoucherDatabaseWebservice startup.cs -> configureservices
+        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        //{
+        //    base.OnConfiguring(optionsBuilder);
 
-            optionsBuilder.UseSqlServer("name=ConnectionStrings:DefaultConnection", b => b.MigrationsAssembly("eVoucherDatabaseWebService"));
-        }
-        protected eVoucherDbContext() { }
+        //    optionsBuilder.UseSqlServer("name=ConnectionStrings:DefaultConnection", b => b.MigrationsAssembly("eVoucherDatabaseWebService"));
+        //}
+
+        protected eVoucherDbContext()
+        { }
 
         public DbSet<PartnerCategory> PartnerCategories { get; set; }
         public DbSet<Partner> Partners { get; set; }

@@ -1,5 +1,0 @@
-*Technique:
-	- ASP.NetCore7.0
-	- EntityFrameWorkCore7.0
-	- IdentityFrameWork
-**

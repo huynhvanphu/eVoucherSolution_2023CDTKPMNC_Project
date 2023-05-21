@@ -3,10 +3,10 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace eVoucherDatabaseWebService.Migrations
+namespace eVoucher_BUS.Migrations
 {
     /// <inheritdoc />
-    public partial class addentities : Migration
+    public partial class updategameclass : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -102,6 +102,8 @@ namespace eVoucherDatabaseWebService.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    PlayedCount = table.Column<int>(type: "int", nullable: false),
+                    CampaignChosenCount = table.Column<int>(type: "int", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: false),
                     CreatedTime = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UpdatedTime = table.Column<DateTime>(type: "datetime2", nullable: true),

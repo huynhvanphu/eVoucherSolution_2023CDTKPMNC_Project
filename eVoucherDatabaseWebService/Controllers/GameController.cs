@@ -12,7 +12,7 @@ namespace eVoucherDatabaseWebService.Controllers
 
     [Route("api/[controller]")]
     [ApiController]
-    public class GameController : ControllerBase
+    public class GameController : Controller
     {
         private GameService _gameService;
         public GameController(GameService gameService)

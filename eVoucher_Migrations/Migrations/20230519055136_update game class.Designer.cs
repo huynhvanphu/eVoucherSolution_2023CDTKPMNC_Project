@@ -9,11 +9,11 @@ using eVoucher_DAL;
 
 #nullable disable
 
-namespace eVoucherDatabaseWebService.Migrations
+namespace eVoucher_BUS.Migrations
 {
     [DbContext(typeof(eVoucherDbContext))]
-    [Migration("20230419104357_addentities")]
-    partial class addentities
+    [Migration("20230519055136_update game class")]
+    partial class updategameclass
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -126,7 +126,7 @@ namespace eVoucherDatabaseWebService.Migrations
                     b.ToTable("AppUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("eVoucherDatabaseWebService_DTO.Models.AppRole", b =>
+            modelBuilder.Entity("eVoucher_DTO.Models.AppRole", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -150,7 +150,7 @@ namespace eVoucherDatabaseWebService.Migrations
                     b.ToTable("AppRoles");
                 });
 
-            modelBuilder.Entity("eVoucherDatabaseWebService_DTO.Models.AppUser", b =>
+            modelBuilder.Entity("eVoucher_DTO.Models.AppUser", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -218,7 +218,7 @@ namespace eVoucherDatabaseWebService.Migrations
                     b.ToTable("AppUsers");
                 });
 
-            modelBuilder.Entity("eVoucherDatabaseWebService_DTO.Models.Campaign", b =>
+            modelBuilder.Entity("eVoucher_DTO.Models.Campaign", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -285,7 +285,7 @@ namespace eVoucherDatabaseWebService.Migrations
                     b.ToTable("Campaigns");
                 });
 
-            modelBuilder.Entity("eVoucherDatabaseWebService_DTO.Models.CampaignGame", b =>
+            modelBuilder.Entity("eVoucher_DTO.Models.CampaignGame", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -333,7 +333,7 @@ namespace eVoucherDatabaseWebService.Migrations
                     b.ToTable("CampaignGames");
                 });
 
-            modelBuilder.Entity("eVoucherDatabaseWebService_DTO.Models.CampaignImage", b =>
+            modelBuilder.Entity("eVoucher_DTO.Models.CampaignImage", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -372,7 +372,7 @@ namespace eVoucherDatabaseWebService.Migrations
                     b.ToTable("CampaignImages");
                 });
 
-            modelBuilder.Entity("eVoucherDatabaseWebService_DTO.Models.Customer", b =>
+            modelBuilder.Entity("eVoucher_DTO.Models.Customer", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -427,13 +427,16 @@ namespace eVoucherDatabaseWebService.Migrations
                     b.ToTable("Customers");
                 });
 
-            modelBuilder.Entity("eVoucherDatabaseWebService_DTO.Models.Game", b =>
+            modelBuilder.Entity("eVoucher_DTO.Models.Game", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("CampaignChosenCount")
+                        .HasColumnType("int");
 
                     b.Property<string>("CreatedBy")
                         .IsRequired()
@@ -451,6 +454,9 @@ namespace eVoucherDatabaseWebService.Migrations
                         .HasMaxLength(250)
                         .HasColumnType("nvarchar(250)");
 
+                    b.Property<int>("PlayedCount")
+                        .HasColumnType("int");
+
                     b.Property<int>("Status")
                         .HasColumnType("int");
 
@@ -465,7 +471,7 @@ namespace eVoucherDatabaseWebService.Migrations
                     b.ToTable("Games");
                 });
 
-            modelBuilder.Entity("eVoucherDatabaseWebService_DTO.Models.GamePlayResult", b =>
+            modelBuilder.Entity("eVoucher_DTO.Models.GamePlayResult", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -497,7 +503,7 @@ namespace eVoucherDatabaseWebService.Migrations
                     b.ToTable("GamePlayResults");
                 });
 
-            modelBuilder.Entity("eVoucherDatabaseWebService_DTO.Models.Partner", b =>
+            modelBuilder.Entity("eVoucher_DTO.Models.Partner", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -551,7 +557,7 @@ namespace eVoucherDatabaseWebService.Migrations
                     b.ToTable("Partners");
                 });
 
-            modelBuilder.Entity("eVoucherDatabaseWebService_DTO.Models.PartnerCategory", b =>
+            modelBuilder.Entity("eVoucher_DTO.Models.PartnerCategory", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -589,7 +595,7 @@ namespace eVoucherDatabaseWebService.Migrations
                     b.ToTable("PartnerCategories");
                 });
 
-            modelBuilder.Entity("eVoucherDatabaseWebService_DTO.Models.PartnerImage", b =>
+            modelBuilder.Entity("eVoucher_DTO.Models.PartnerImage", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -628,7 +634,7 @@ namespace eVoucherDatabaseWebService.Migrations
                     b.ToTable("PartnerImages");
                 });
 
-            modelBuilder.Entity("eVoucherDatabaseWebService_DTO.Models.Staff", b =>
+            modelBuilder.Entity("eVoucher_DTO.Models.Staff", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -680,7 +686,7 @@ namespace eVoucherDatabaseWebService.Migrations
                     b.ToTable("Staffs");
                 });
 
-            modelBuilder.Entity("eVoucherDatabaseWebService_DTO.Models.Voucher", b =>
+            modelBuilder.Entity("eVoucher_DTO.Models.Voucher", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -709,7 +715,7 @@ namespace eVoucherDatabaseWebService.Migrations
                     b.ToTable("Vouchers");
                 });
 
-            modelBuilder.Entity("eVoucherDatabaseWebService_DTO.Models.VoucherType", b =>
+            modelBuilder.Entity("eVoucher_DTO.Models.VoucherType", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -770,7 +776,7 @@ namespace eVoucherDatabaseWebService.Migrations
                     b.ToTable("VoucherTypes");
                 });
 
-            modelBuilder.Entity("eVoucherDatabaseWebService_DTO.Models.VoucherTypeImage", b =>
+            modelBuilder.Entity("eVoucher_DTO.Models.VoucherTypeImage", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -809,17 +815,17 @@ namespace eVoucherDatabaseWebService.Migrations
                     b.ToTable("VoucherTypeImages");
                 });
 
-            modelBuilder.Entity("eVoucherDatabaseWebService_DTO.Models.AppUser", b =>
+            modelBuilder.Entity("eVoucher_DTO.Models.AppUser", b =>
                 {
-                    b.HasOne("eVoucherDatabaseWebService_DTO.Models.Customer", "Customer")
+                    b.HasOne("eVoucher_DTO.Models.Customer", "Customer")
                         .WithMany()
                         .HasForeignKey("CustomerID");
 
-                    b.HasOne("eVoucherDatabaseWebService_DTO.Models.Partner", "Partner")
+                    b.HasOne("eVoucher_DTO.Models.Partner", "Partner")
                         .WithMany()
                         .HasForeignKey("PartnerID");
 
-                    b.HasOne("eVoucherDatabaseWebService_DTO.Models.Staff", "Staff")
+                    b.HasOne("eVoucher_DTO.Models.Staff", "Staff")
                         .WithMany()
                         .HasForeignKey("StaffID");
 
@@ -830,9 +836,9 @@ namespace eVoucherDatabaseWebService.Migrations
                     b.Navigation("Staff");
                 });
 
-            modelBuilder.Entity("eVoucherDatabaseWebService_DTO.Models.Campaign", b =>
+            modelBuilder.Entity("eVoucher_DTO.Models.Campaign", b =>
                 {
-                    b.HasOne("eVoucherDatabaseWebService_DTO.Models.Partner", "Partner")
+                    b.HasOne("eVoucher_DTO.Models.Partner", "Partner")
                         .WithMany()
                         .HasForeignKey("PartnerID")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -841,15 +847,15 @@ namespace eVoucherDatabaseWebService.Migrations
                     b.Navigation("Partner");
                 });
 
-            modelBuilder.Entity("eVoucherDatabaseWebService_DTO.Models.CampaignGame", b =>
+            modelBuilder.Entity("eVoucher_DTO.Models.CampaignGame", b =>
                 {
-                    b.HasOne("eVoucherDatabaseWebService_DTO.Models.Campaign", "Campaign")
+                    b.HasOne("eVoucher_DTO.Models.Campaign", "Campaign")
                         .WithMany("CampaignGames")
                         .HasForeignKey("CampaignID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("eVoucherDatabaseWebService_DTO.Models.Game", "Game")
+                    b.HasOne("eVoucher_DTO.Models.Game", "Game")
                         .WithMany("CampaignGames")
                         .HasForeignKey("GameID")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -860,10 +866,10 @@ namespace eVoucherDatabaseWebService.Migrations
                     b.Navigation("Game");
                 });
 
-            modelBuilder.Entity("eVoucherDatabaseWebService_DTO.Models.CampaignImage", b =>
+            modelBuilder.Entity("eVoucher_DTO.Models.CampaignImage", b =>
                 {
-                    b.HasOne("eVoucherDatabaseWebService_DTO.Models.Campaign", "Campaign")
-                        .WithMany()
+                    b.HasOne("eVoucher_DTO.Models.Campaign", "Campaign")
+                        .WithMany("CampaignImages")
                         .HasForeignKey("CampaignID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -871,24 +877,24 @@ namespace eVoucherDatabaseWebService.Migrations
                     b.Navigation("Campaign");
                 });
 
-            modelBuilder.Entity("eVoucherDatabaseWebService_DTO.Models.Customer", b =>
+            modelBuilder.Entity("eVoucher_DTO.Models.Customer", b =>
                 {
-                    b.HasOne("eVoucherDatabaseWebService_DTO.Models.AppUser", "AppUser")
+                    b.HasOne("eVoucher_DTO.Models.AppUser", "AppUser")
                         .WithOne()
-                        .HasForeignKey("eVoucherDatabaseWebService_DTO.Models.Customer", "UserID")
+                        .HasForeignKey("eVoucher_DTO.Models.Customer", "UserID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("AppUser");
                 });
 
-            modelBuilder.Entity("eVoucherDatabaseWebService_DTO.Models.GamePlayResult", b =>
+            modelBuilder.Entity("eVoucher_DTO.Models.GamePlayResult", b =>
                 {
-                    b.HasOne("eVoucherDatabaseWebService_DTO.Models.AppUser", null)
+                    b.HasOne("eVoucher_DTO.Models.AppUser", null)
                         .WithMany("GamePlayResults")
                         .HasForeignKey("AppUserId");
 
-                    b.HasOne("eVoucherDatabaseWebService_DTO.Models.CampaignGame", "CampaignGame")
+                    b.HasOne("eVoucher_DTO.Models.CampaignGame", "CampaignGame")
                         .WithMany()
                         .HasForeignKey("CampaignGameID")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -897,17 +903,17 @@ namespace eVoucherDatabaseWebService.Migrations
                     b.Navigation("CampaignGame");
                 });
 
-            modelBuilder.Entity("eVoucherDatabaseWebService_DTO.Models.Partner", b =>
+            modelBuilder.Entity("eVoucher_DTO.Models.Partner", b =>
                 {
-                    b.HasOne("eVoucherDatabaseWebService_DTO.Models.PartnerCategory", "Partnercategory")
+                    b.HasOne("eVoucher_DTO.Models.PartnerCategory", "Partnercategory")
                         .WithMany("Partners")
                         .HasForeignKey("PartnerCategoryID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("eVoucherDatabaseWebService_DTO.Models.AppUser", "AppUser")
+                    b.HasOne("eVoucher_DTO.Models.AppUser", "AppUser")
                         .WithOne()
-                        .HasForeignKey("eVoucherDatabaseWebService_DTO.Models.Partner", "UserID")
+                        .HasForeignKey("eVoucher_DTO.Models.Partner", "UserID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -916,10 +922,10 @@ namespace eVoucherDatabaseWebService.Migrations
                     b.Navigation("Partnercategory");
                 });
 
-            modelBuilder.Entity("eVoucherDatabaseWebService_DTO.Models.PartnerImage", b =>
+            modelBuilder.Entity("eVoucher_DTO.Models.PartnerImage", b =>
                 {
-                    b.HasOne("eVoucherDatabaseWebService_DTO.Models.Partner", "Partner")
-                        .WithMany()
+                    b.HasOne("eVoucher_DTO.Models.Partner", "Partner")
+                        .WithMany("PartnerImages")
                         .HasForeignKey("PartnerID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -927,26 +933,26 @@ namespace eVoucherDatabaseWebService.Migrations
                     b.Navigation("Partner");
                 });
 
-            modelBuilder.Entity("eVoucherDatabaseWebService_DTO.Models.Staff", b =>
+            modelBuilder.Entity("eVoucher_DTO.Models.Staff", b =>
                 {
-                    b.HasOne("eVoucherDatabaseWebService_DTO.Models.AppUser", "AppUser")
+                    b.HasOne("eVoucher_DTO.Models.AppUser", "AppUser")
                         .WithOne()
-                        .HasForeignKey("eVoucherDatabaseWebService_DTO.Models.Staff", "UserID")
+                        .HasForeignKey("eVoucher_DTO.Models.Staff", "UserID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("AppUser");
                 });
 
-            modelBuilder.Entity("eVoucherDatabaseWebService_DTO.Models.Voucher", b =>
+            modelBuilder.Entity("eVoucher_DTO.Models.Voucher", b =>
                 {
-                    b.HasOne("eVoucherDatabaseWebService_DTO.Models.GamePlayResult", "GamePlayResult")
+                    b.HasOne("eVoucher_DTO.Models.GamePlayResult", "GamePlayResult")
                         .WithMany("Vouchers")
                         .HasForeignKey("GamePlayResultID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("eVoucherDatabaseWebService_DTO.Models.VoucherType", "VoucherType")
+                    b.HasOne("eVoucher_DTO.Models.VoucherType", "VoucherType")
                         .WithMany("Vouchers")
                         .HasForeignKey("VoucherTypeID")
                         .OnDelete(DeleteBehavior.NoAction)
@@ -957,9 +963,9 @@ namespace eVoucherDatabaseWebService.Migrations
                     b.Navigation("VoucherType");
                 });
 
-            modelBuilder.Entity("eVoucherDatabaseWebService_DTO.Models.VoucherType", b =>
+            modelBuilder.Entity("eVoucher_DTO.Models.VoucherType", b =>
                 {
-                    b.HasOne("eVoucherDatabaseWebService_DTO.Models.Campaign", "Campaign")
+                    b.HasOne("eVoucher_DTO.Models.Campaign", "Campaign")
                         .WithMany()
                         .HasForeignKey("CampaignID")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -968,9 +974,9 @@ namespace eVoucherDatabaseWebService.Migrations
                     b.Navigation("Campaign");
                 });
 
-            modelBuilder.Entity("eVoucherDatabaseWebService_DTO.Models.VoucherTypeImage", b =>
+            modelBuilder.Entity("eVoucher_DTO.Models.VoucherTypeImage", b =>
                 {
-                    b.HasOne("eVoucherDatabaseWebService_DTO.Models.VoucherType", "VoucherType")
+                    b.HasOne("eVoucher_DTO.Models.VoucherType", "VoucherType")
                         .WithMany()
                         .HasForeignKey("VoucherTypeID")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -979,32 +985,39 @@ namespace eVoucherDatabaseWebService.Migrations
                     b.Navigation("VoucherType");
                 });
 
-            modelBuilder.Entity("eVoucherDatabaseWebService_DTO.Models.AppUser", b =>
+            modelBuilder.Entity("eVoucher_DTO.Models.AppUser", b =>
                 {
                     b.Navigation("GamePlayResults");
                 });
 
-            modelBuilder.Entity("eVoucherDatabaseWebService_DTO.Models.Campaign", b =>
+            modelBuilder.Entity("eVoucher_DTO.Models.Campaign", b =>
+                {
+                    b.Navigation("CampaignGames");
+
+                    b.Navigation("CampaignImages");
+                });
+
+            modelBuilder.Entity("eVoucher_DTO.Models.Game", b =>
                 {
                     b.Navigation("CampaignGames");
                 });
 
-            modelBuilder.Entity("eVoucherDatabaseWebService_DTO.Models.Game", b =>
-                {
-                    b.Navigation("CampaignGames");
-                });
-
-            modelBuilder.Entity("eVoucherDatabaseWebService_DTO.Models.GamePlayResult", b =>
+            modelBuilder.Entity("eVoucher_DTO.Models.GamePlayResult", b =>
                 {
                     b.Navigation("Vouchers");
                 });
 
-            modelBuilder.Entity("eVoucherDatabaseWebService_DTO.Models.PartnerCategory", b =>
+            modelBuilder.Entity("eVoucher_DTO.Models.Partner", b =>
+                {
+                    b.Navigation("PartnerImages");
+                });
+
+            modelBuilder.Entity("eVoucher_DTO.Models.PartnerCategory", b =>
                 {
                     b.Navigation("Partners");
                 });
 
-            modelBuilder.Entity("eVoucherDatabaseWebService_DTO.Models.VoucherType", b =>
+            modelBuilder.Entity("eVoucher_DTO.Models.VoucherType", b =>
                 {
                     b.Navigation("Vouchers");
                 });

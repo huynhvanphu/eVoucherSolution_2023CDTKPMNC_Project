@@ -1,6 +1,6 @@
 ﻿@model eVoucher_BUS.Requests.GameRequests.GameCreateRequest
 @{
-    ViewData["Title"] = "Create new game";    
+    ViewData["Title"] = "Create new game";
 }
 <div class="card-header">
     <h3 class="text-center font-weight-light my-4">Create new game</h3>
@@ -8,16 +8,22 @@
 <div class="card-body">
     <form asp-action="Create" enctype="multipart/form-data" method="post">
         <div class="row mb-3">
-            <div class="col-md-6">
+            <div class="col-md-7">
                 <div class="form-floating mb-3 mb-md-0">
                     <input class="form-control" asp-for="Name" type="text" placeholder="Enter game name" />
                     <label asp-for="Name" class="control-label">Name</label>
                 </div>
-            </div>            
-        </div>        
+                <div class="col-md-5">
+                    <div class="form-floating mb-3 mb-md-0">
+                        <input class="form-control" asp-for="CreatedBy" type="text" value="Cuongpm" />
+                        <label asp-for="CreatedBy" class="control-label">Create by</label>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="mt-4 mb-0">
             <div class="d-grid">
-                <input class="btn btn-primary btn-block" type="submit" value="Create game"/>
+                <input class="btn btn-primary btn-block" type="submit" value="Create game" />
             </div>
         </div>
     </form>
