@@ -20,6 +20,7 @@ builder.Services.AddSession(options =>
 });
 builder.Services.AddTransient<GameAPIClient>();
 builder.Services.AddTransient<StaffAPIClient>();
+builder.Services.AddTransient<LoginAPIClient>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -36,7 +37,7 @@ app.UseAuthentication();
 app.UseRouting();
 
 app.UseAuthorization();
-
+app.UseSession();
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
