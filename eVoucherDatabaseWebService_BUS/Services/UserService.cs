@@ -37,13 +37,14 @@ namespace eVoucher_BUS.Services
         public async Task<APIResult<string>> Authenticate(LoginRequest request)
         {
             var user = await _userManager.FindByNameAsync(request.UserName);
-            if (user == null) { user = await _userManager.FindByEmailAsync(request.UserName); }
-            if (user == null) { return new APIResult<string>(false,"UserName not found", string.Empty); }            
+            if (user == null || user.UserTypeId != request.UserTypeId) { user = await _userManager.FindByEmailAsync(request.UserName); }
+            if (user == null || user.UserTypeId != request.UserTypeId) { return new APIResult<string>(false,"UserName not found", string.Empty); }            
             var result = await _signInManager.PasswordSignInAsync(user, request.Password,request.Rememberme,false);
             if(!result.Succeeded)
             {
                 return new APIResult<string>(false, "Incorrect password", string.Empty);
             }
+
             var roles = await _userManager.GetRolesAsync(user);
             var claims = new[]
             { 

@@ -3,6 +3,8 @@ using eVoucher_DAL.Repositories;
 using eVoucher_DTO.Models;
 using eVoucher_Utility.Enums;
 using Microsoft.AspNetCore.Identity;
+using System.Linq;
+using System.Linq.Dynamic.Core;
 
 namespace eVoucher_BUS.Services
 {
@@ -56,14 +58,16 @@ namespace eVoucher_BUS.Services
 
         public async Task<Staff?> RegisterStaff(StaffRegisterRequest request)
         {
+            
             var user = new AppUser()
             {
                 UserName = request.UserName,
                 Email = request.Email,
-                PhoneNumber = request.PhoneNumber
+                PhoneNumber = request.PhoneNumber,
+                UserTypeId = request.UserTypeId
             };
             user.PasswordHash = _userManager.PasswordHasher.HashPassword(user, request.Password);
-            var result = await _userManager.CreateAsync(user);            
+            var result = await _userManager.CreateAsync(user);
             var staff = new Staff()
             {
                 Name = request.Name,
@@ -75,8 +79,8 @@ namespace eVoucher_BUS.Services
                 Status = ActiveStatus.Active,
                 AppUser = user
             };            
-            var registerResult = await _staffRepository.Add(staff);
-            
+            var registerResult = await _staffRepository.Add(staff);            
+
             return registerResult;
         }
 

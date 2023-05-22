@@ -18,7 +18,7 @@ namespace eVoucherDatabaseWebService.Controllers
         public async Task<ActionResult<APIResult<string>>> Login([FromBody] LoginRequest request)
         {
             var result = await _userService.Authenticate(request);
-            if (result == null)
+            if (!result.IsSucceeded)
             {
                 return BadRequest(result);
             }

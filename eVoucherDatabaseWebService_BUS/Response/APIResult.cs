@@ -17,7 +17,7 @@ namespace eVoucher_BUS.Response
         }
         public APIResult(bool s,string m, T obj)
         {
-            IsSucceeded = true;
+            IsSucceeded = s;
             Message = m;
             ResultObj = obj;
         }

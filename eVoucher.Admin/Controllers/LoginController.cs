@@ -23,6 +23,7 @@ namespace eVoucher.Admin.Controllers
             _loginAPIClient = loginAPIClient;
         }
 
+        [HttpGet]
         public IActionResult Index()
         {
             return View();
@@ -34,9 +35,10 @@ namespace eVoucher.Admin.Controllers
                 return View(ModelState);
 
             var result = await _loginAPIClient.Login(request);
-            if (result.IsSucceeded == false)
+            if (!result.IsSucceeded)
             {
                 ModelState.AddModelError("", result.Message);
+                ViewData["Message"] = result.Message;
                 return View();
             }
             var userPrincipal = this.ValidateToken(result.ResultObj);
@@ -65,8 +67,8 @@ namespace eVoucher.Admin.Controllers
             validationParameters.ValidAudience = _configuration["Tokens:Issuer"];
             validationParameters.ValidIssuer = _configuration["Tokens:Issuer"];
             validationParameters.IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["Tokens:Key"]));            
-            ClaimsPrincipal principal = new JwtSecurityTokenHandler().ValidateToken(jwtTokentrim, validationParameters, out validatedToken);
-
+            ClaimsPrincipal principal = new JwtSecurityTokenHandler().ValidateToken(jwtTokentrim, 
+                validationParameters, out validatedToken);
             return principal;
         }
     }

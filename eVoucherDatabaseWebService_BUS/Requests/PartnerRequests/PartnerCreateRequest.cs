@@ -28,5 +28,6 @@ namespace eVoucher_BUS.Requests.PartnerRequests
         [Display(Name = "Xác nhận mật khẩu: ")]
         [DataType(DataType.Password)]
         public string ConfirmPassword { get; set; }
+        public int RoleId { get; set; } = 2;
     }
 }
